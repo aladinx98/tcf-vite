@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
 import "./style.css";
-import logo from "../../images/TCF.png";
+import logo from "../../images/BITTU.png";
 import Abi from "../../Helpers/abi.json";
 import TokenAbi from "../../Helpers/token.json";
 import TokenModal from "./TokenModal";
 import { list } from "../../Helpers/tokenlist";
 import toast from "react-hot-toast";
-import { Web3Button } from "@web3modal/react";
 import { useAccount } from 'wagmi';
 import Web3 from "web3";
 import { prepareWriteContract, writeContract, waitForTransaction } from "@wagmi/core";
@@ -19,9 +18,8 @@ const MainSection = () =>
 {
   const { isConnected, address } = useAccount();
 
-  const cAddress = "0xF69f714BB3F5366F97Dc8818e757A50Fa4a71f3F";
+  const cAddress = "0x02Ce468fa28caff3A2D18d23f5d020dE8C0Ff4bb";
   const usdtAddress = "0x55d398326f99059fF775485246999027B3197955";
-  const DEFAULT_GAS_PRICE_GWEI = "7"; // Default gas price in Gwei
 
   const [ selectedAmount, setSelectedAmount ] = useState( "" );
 
@@ -34,7 +32,7 @@ const MainSection = () =>
   const [ currentToken, setCurrentToken ] = useState( list[ 0 ] );
   const handleOpen = () => setOpen( true );
   const handleClose = () => setOpen( false );
-  const gartVal = 453;
+  const gartVal = 3;
   const referralAddress = data.referralAddress || "";
 
 
@@ -47,7 +45,6 @@ const MainSection = () =>
     }
   
     try {
-      const contract = new webSupply_Binance.eth.Contract(Abi, cAddress);
       const tokenContract = new webSupply_Binance.eth.Contract(TokenAbi, usdtAddress);
       let bnbValue = webSupply_Binance.utils.toWei(data.bnb.toString());
   
@@ -61,7 +58,7 @@ const MainSection = () =>
         const buyTransaction = await prepareWriteContract({
           address: cAddress,
           abi: Abi,
-          functionName: "buyWithReferral",
+          functionName: "buyBITTU",
           args: [value, referralAddress],
           from: address,
           gas: 2_000_000n,
@@ -140,45 +137,39 @@ const MainSection = () =>
 
   return (
     <>
+  
       <br></br>
       <br></br>
       <div className='main-section'>
-        <p className='headings'>The Crypto Factory (TCF)</p>
-        <p style={ { fontSize: "17px", color: "#ffffff", margin: "5px" } }>(Round 2 - Price 0.0022$)</p>
-        <p style={ { fontSize: "17px", color: "#feaf22", margin: "5px" } }>Next Round Start From 1st Mar with 0.0033$</p>
+        
+        <p className='headings'>BITTU BEE Presale Round 1</p>
+        <p style={ { fontSize: "17px", color: "#ffffff", margin: "5px" } }>(Price 0.32$)</p>
+        <p style={ { fontSize: "17px", color: "#feaf22", margin: "5px" } }>Next Round Start From 15st Apr with 0.64$</p>
         <div className='main-section-form'>
-          <p style={ { fontSize: "17px", color: "#feaf22", marginBottom: "5px" } }>Get 5% Referral Bonus</p>
+          <p style={ { fontSize: "17px", color: "#000", marginBottom: "5px" } }>Get 5% Referral Bonus</p>
           <p className='mb-6'>
-            1 { currentToken.name } = { gartVal } TCF
+            1 { currentToken.name } = { gartVal } BITTU
           </p>
 
           <p className='mgtp'>Pay with</p>
           <div className='form-group'>
-            <select
-              id='bnb'
-              className='text-black'
-              value={ data.bnb }
-              onChange={ ( e ) =>
-              {
-                const selectedOption = e.target.value;
-                const usdtAmount = selectedOption === "Max" ? 1000 : parseInt( selectedOption, 10 );
-                setData( {
-                  ...data,
-                  buyOption: selectedOption,
-                  bnb: usdtAmount,
-                  gart: usdtAmount * gartVal,
-                } );
-              } }
-            >
-              <option value=''>Select USDT</option>
-              <option value='50'>Buy 50 USDT</option>
-              <option value='100'>Buy 100 USDT</option>
-              <option value='150'>Buy 150 USDT</option>
-              <option value='200'>Buy 200 USDT</option>
-              <option value='250'>Buy 250 USDT</option>
-              <option value='500'>Buy 500 USDT</option>
-              <option value='1000'>Buy 1000 USDT</option>
-            </select>
+          <input
+                type="text"
+                value={data.bnb}
+                className="text-black"
+                onChange={(e) => {
+                  const val = e.target.value
+                    .split("")
+                    .filter((el) => isValidNumber(el))
+                    .join("");
+                  setData({
+                    ...data,
+                    bnb: val,
+                    gart: val * gartVal,
+                  });
+                }}
+              />
+             
 
             <div
               onClick={ handleOpen }
@@ -215,7 +206,7 @@ const MainSection = () =>
                 src={ logo }
                 alt='snk'
               />
-              <p>TCF</p>
+              <p>BITTU</p>
             </div>
           </div>
 
@@ -251,7 +242,7 @@ const MainSection = () =>
 
           <div className='smart'>
             
-           <p style={ { fontSize: "17px", color: "#feaf22", margin: "5px" } }><i class="fa-brands fa-youtube fa-bounce"></i> <a href="https://www.youtube.com/watch?v=RqRXyrsK2Yc" target="_blank">How to Buy TCF Token</a></p>
+           <p style={ { fontSize: "17px", color: "#feaf22", margin: "5px" } }><i class="fa-brands fa-youtube fa-bounce"></i> <a href="https://www.youtube.com/@bee_bittu" target="_blank">How to Buy BITTU Token</a></p>
           </div>
         </div>
 

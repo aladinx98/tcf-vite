@@ -18,10 +18,21 @@
   width: 50%;
   margin-left: 25%;
   text-align: left;
-  background: transparent linear-gradient(180deg, #611891c9 0%, #2137b5bf 100%) 0% 0% no-repeat padding-box;
+  background: transparent linear-gradient(180deg, #f1b5009f 30%, #e4b70556 70%) 0% 0% no-repeat padding-box;
   border-radius: 25px;
+  border: 1px solid #caa201;
   padding: 25px;
   color: #ffffff;
+}
+
+.video-background{
+  width: 100%;
+  object-fit: cover;
+  height: 100%;
+  display: flex;
+  position: absolute;
+  opacity: 0.8;
+  right: 0%;
 }
 
 .main-section .main-section-form .form-group {

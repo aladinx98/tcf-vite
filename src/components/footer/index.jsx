@@ -15,7 +15,7 @@ const Footer = () => {
         </div>
       </div>
       <br></br>
-      <p className="rights">All Rights Reserved By The Crypto Factory</p>
+      <p className="rights">All Rights Reserved By BITTU BEE</p>
     </div>
   );
 };

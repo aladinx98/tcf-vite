@@ -1,5 +1,5 @@
 import React from "react";
-import Logo from "../../images/TCF.png";
+import Logo from "../../images/logo_wht.png";
 import "./style.css";
 import { Web3Button } from '@web3modal/react';
 
